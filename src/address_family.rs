@@ -12,7 +12,7 @@ pub trait AddressFamily {
         let addr = SocketAddr::new(Self::any_addr(), MDNS_PORT);
         let socket = Self::socket_builder()?
             .reuse_address(true)?
-            .reuse_port(true)?
+            //.reuse_port(true)?
             .bind(&addr)?;
         Self::join_multicast(&socket)?;
         Ok(socket)
