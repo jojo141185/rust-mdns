@@ -23,7 +23,7 @@ pub trait AddressFamily {
             // reason the bind() call will fail later.
             #[cfg(target_os = "linux")]
             Err(ref e) if e.raw_os_error() == Some(libc::ENOPROTOOPT) => {},
-            Err(err) => println!("Error: {:?}", err),
+            Err(err) => Err(err),
         }
         let socket = builder.bind(&addr)?;
         Self::join_multicast(&socket)?;
